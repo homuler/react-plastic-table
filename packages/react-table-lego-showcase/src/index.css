@@ -1,0 +1,19 @@
+th {
+  position: relative;
+  min-width: 80px;
+  white-space: nowrap;
+  border: 1px solid rgba(63, 63, 63, 0.8);
+}
+
+.react-draggable-dragging {
+  background-color: rgba(192, 192, 192, 0.3);
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+td {
+  border: 1px solid black;
+}

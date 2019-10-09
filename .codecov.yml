@@ -1,0 +1,24 @@
+comment:
+  layout: "header, reach, diff, flags, files, changes"
+  behavior: default
+  require_changes: yes    # if true: only post the comment if coverage changes
+  require_base: no        # [yes :: must have a base report to post]
+  require_head: yes       # [yes :: must have a head report to post]
+  branches: null
+coverage:
+  range: 50..90
+  round: nearest
+  precision: 2
+flags:
+  react-table-lego-accessory:
+    paths:
+      - packages/react-table-lego-accessory
+  react-table-lego-brick:  
+    paths:
+      - packages/react-table-lego-brick
+  react-table-lego-works:
+    paths:
+      - packages/react-table-lego-works
+parsers:
+  javascript:
+    enable_partials: yes

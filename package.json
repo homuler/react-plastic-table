@@ -1,6 +1,40 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream",
+    "deploy:storybook": "lerna run build --scope @react-table-lego/showcase -- -o ../../storybook-static",
+    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
+    "lint:ci": "yarn lint --format junit --output-file=./reports/eslint/eslint.xml",
+    "test:ci": "lerna run coverage:ci",
+    "test:ci:report": "lerna run coverage:ci:report",
+    "versionup": "lerna version --conventional-commits",
+    "versionup:patch": "lerna version patch --conventional-commits",
+    "versionup:minor": "lerna version minor --conventional-commits",
+    "versionup:major": "lerna version major --conventional-commits",
+    "release": "lerna publish from-package"
+  },
   "devDependencies": {
-    "lerna": "^3.16.5"
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "husky": "^3.0.8",
+    "lerna": "^3.16.5",
+    "lint-staged": "^9.4.2",
+    "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
   }
 }

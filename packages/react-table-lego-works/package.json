@@ -1,0 +1,32 @@
+{
+  "name": "@react-table-lego/works",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "homuler <junrou.nishida@gmail.com>",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@react-table-lego/brick": "^0.0.0",
+    "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.144",
+    "@types/mocha": "^5.2.7",
+    "@types/power-assert": "^1.5.0",
+    "@types/react": "^16.9.9",
+    "core-js": "^3.3.2",
+    "mocha": "^6.2.1",
+    "power-assert": "^1.6.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "typescript": "^3.6.4"
+  }
+}

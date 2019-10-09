@@ -1,0 +1,76 @@
+version: 2.1
+
+aliases:
+  # Cache Management
+  - &restore-node-modules-cache
+      name: Restore Node Modules Cache
+      keys:
+        - v1-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+  - &restore-yarn-cache
+      name: Restore Yarn Cache
+      keys:
+        - v1-yarn-{{ arch }}
+  - &save-node-modules-cache
+      paths:
+        - ./node_modules
+      key: v1-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+  - &save-yarn-cache
+      paths:
+        - ~/.cache/yarn
+      key: v1-yarn-{{ arch }}
+
+  # Artifact Path
+
+  # Command
+  - &send-coverages
+      name: Send JS Coverage
+      command: |
+        sudo npm install -g codecov
+
+        for package in `ls coverage`;
+        do
+          if [ -f "coverage/$package/lcov.info" ]; then
+            codecov -f "coverage/$package/lcov.info" -F ${package//-/_}
+          fi
+        done
+  - &build-storybook
+      name: Build Static Storybook App
+      command: |
+        yarn storybook:build
+
+  # Publish
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:13
+
+# Jobs
+jobs:
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+      - restore_cache: *restore-yarn-cache
+      - restore_cache: *restore-node-modules-cache
+      - run: yarn --version
+      - run: yarn install
+      - run: yarn bootstrap
+      - run: yarn test:ci
+      - run: yarn test:ci:report
+      - run: yarn lint:ci
+      - run: *send-coverages
+      - save_cache: *save-node-modules-cache
+      - save_cache: *save-yarn-cache
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: coverage/
+          destination: coverage
+
+# Workflows
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test

@@ -1,0 +1,37 @@
+{
+  "name": "@react-table-lego/showcase",
+  "version": "0.0.0",
+  "description": "react-table-lego showcase",
+  "author": "homuler <junrou.nishida@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "start-storybook",
+    "build": "build-storybook -c .storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@babel/runtime-corejs3": "^7.6.3",
+    "@storybook/addon-actions": "^5.2.4",
+    "@storybook/addon-info": "^5.2.4",
+    "@storybook/addon-knobs": "^5.2.4",
+    "@storybook/react": "^5.2.4",
+    "@storybook/source-loader": "^5.2.4",
+    "@types/react": "^16.9.9",
+    "@types/storybook__addon-info": "^4.1.2",
+    "@types/storybook__react": "^4.0.2",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.3.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@react-table-lego/accessory": "^0.0.0",
+    "@react-table-lego/brick": "^0.0.0",
+    "@react-table-lego/works": "^0.0.0",
+    "styled-components": "^4.4.0"
+  }
+}
