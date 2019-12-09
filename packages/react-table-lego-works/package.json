@@ -1,6 +1,6 @@
 {
   "name": "react-table-lego-works",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "> TODO: description",
   "author": "homuler <junrou.nishida@gmail.com>",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "react-table-lego-brick": "^0.1.0"
+    "react-table-lego-brick": "^0.1.1"
   },
   "peerDependencies": {
     "react": "^16.10.2",
