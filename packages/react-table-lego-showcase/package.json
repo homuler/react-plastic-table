@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "react-table-lego-showcase",
   "version": "0.1.1",
   "description": "react-table-lego showcase",
