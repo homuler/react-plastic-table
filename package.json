@@ -15,8 +15,8 @@
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",
     "versionup:major": "lerna version major --conventional-commits",
-    "prerelease": "yarn build",
-    "release": "lerna publish from-package"
+    "prepublish": "lerna run build --stream --ignore react-table-lego-showcase",
+    "release": "lerna publish from-package --ignore react-table-lego-showcase"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
