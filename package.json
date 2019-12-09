@@ -15,6 +15,7 @@
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",
     "versionup:major": "lerna version major --conventional-commits",
+    "prerelease": "yarn build",
     "release": "lerna publish from-package"
   },
   "devDependencies": {
