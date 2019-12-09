@@ -1,4 +1,4 @@
-import { SizeMap } from '@react-table-lego/brick';
+import { SizeMap } from 'react-table-lego-brick';
 
 export interface HeaderObj {
   id: string;

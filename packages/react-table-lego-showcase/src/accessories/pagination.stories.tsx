@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { PaginationButton } from '@react-table-lego/accessory';
+import { PaginationButton } from 'react-table-lego-accessory';
 
 const StyledPaginationButton = styled(PaginationButton)`
   li:first-child, li:first-child > button {

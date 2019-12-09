@@ -1,4 +1,4 @@
-import { ColProps } from '@react-table-lego/brick';
+import { ColProps } from 'react-table-lego-brick';
 import { HeaderObj, LayoutChangeCallback } from './commons.types';
 
 export interface TreeHeaderProps {

@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useMemo } from 'react';
 
 import get from 'lodash/get';
 
-import { ColGroup, Col, Thead, Tr, Th, TableContext, ReorderCallback, ReorderCursor, SizeMap } from '@react-table-lego/brick';
+import { ColGroup, Col, Thead, Tr, Th, TableContext, ReorderCallback, ReorderCursor, SizeMap } from 'react-table-lego-brick';
 import HeaderTree from './data/header-tree';
 import { TreeHeaderProps } from '../types';
 

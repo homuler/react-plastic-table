@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Table, Tbody, Tr, Td, ColProps } from '@react-table-lego/brick';
-import { TreeHeader, HeaderObj, LayoutChangeCallback } from '@react-table-lego/works';
+import { Table, Tbody, Tr, Td, ColProps } from 'react-table-lego-brick';
+import { TreeHeader, HeaderObj, LayoutChangeCallback } from 'react-table-lego-works';
 
 interface Props {
   columns: Array<ColProps | null>;

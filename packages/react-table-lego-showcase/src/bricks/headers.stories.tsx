@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { object, optionsKnob } from '@storybook/addon-knobs';
 
 import '../index.css';
-import { Table, Tbody, Thead, Tr, Th, Td, ColGroup, Col, DragAxis } from '@react-table-lego/brick';
+import { Table, Tbody, Thead, Tr, Th, Td, ColGroup, Col, DragAxis } from 'react-table-lego-brick';
 
 storiesOf('Bricks/Headers', module)
   .add('Single Row', () => {

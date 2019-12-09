@@ -1,5 +1,5 @@
 import { HeaderObj } from '../../types';
-import { ThProps } from '@react-table-lego/brick';
+import { ThProps } from 'react-table-lego-brick';
 
 export default class HeaderTree {
   id: string;

@@ -1,5 +1,5 @@
 {
-  "name": "@react-table-lego/works",
+  "name": "react-table-lego-works",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "homuler <junrou.nishida@gmail.com>",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@react-table-lego/brick": "^0.0.0",
+    "react-table-lego-brick": "^0.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

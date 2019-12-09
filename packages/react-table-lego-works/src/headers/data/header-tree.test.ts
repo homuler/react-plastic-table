@@ -2,7 +2,7 @@ import assert from 'power-assert';
 import { describe } from 'mocha';
 
 import HeaderTree from './header-tree';
-import { ThProps } from '@react-table-lego/brick';
+import { ThProps } from 'react-table-lego-brick';
 
 describe('HeaderTree', () => {
   describe('#toThPropsByRows', () => {

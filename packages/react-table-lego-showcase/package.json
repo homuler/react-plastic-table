@@ -1,5 +1,5 @@
 {
-  "name": "@react-table-lego/showcase",
+  "name": "react-table-lego-showcase",
   "version": "0.0.0",
   "description": "react-table-lego showcase",
   "author": "homuler <junrou.nishida@gmail.com>",
@@ -29,9 +29,9 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@react-table-lego/accessory": "^0.0.0",
-    "@react-table-lego/brick": "^0.0.0",
-    "@react-table-lego/works": "^0.0.0",
+    "react-table-lego-accessory": "^0.0.0",
+    "react-table-lego-brick": "^0.0.0",
+    "react-table-lego-works": "^0.0.0",
     "styled-components": "^4.4.0"
   }
 }
