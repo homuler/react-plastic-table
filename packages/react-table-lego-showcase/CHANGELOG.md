@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/homuler/react-table-lego/compare/v0.1.1...v0.1.2) (2019-12-09)
+
+
+### Bug Fixes
+
+* not to publish react-table-lego-showcase ([a5be75b](https://github.com/homuler/react-table-lego/commit/a5be75b11dda5eff6721ac1def265fb5fc771757))
+
+
+
+
+
 ## [0.1.1](https://github.com/homuler/react-table-lego/compare/v0.1.0...v0.1.1) (2019-12-09)
 
 **Note:** Version bump only for package react-table-lego-showcase
