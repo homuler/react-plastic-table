@@ -1,14 +1,16 @@
+import React from 'react';
+
+import { DragAxis } from './draggable.types';
+import { ReorderCallback } from './reorder.types';
 import { ResizeCallback, ResetSizeCallback } from './resize.types';
 
 export type ResizeAxis = 'x' | 'y';
-export type ResizeControlRenderer = (axis: ResizeAxis) => React.ReactNode;
 
 export interface ResizeControlProps {
   className?: string;
   axis?: ResizeAxis;
   onResize?: ResizeCallback;
   onReset?: ResetSizeCallback;
-  children?: ResizeControlRenderer;
 }
 
 export interface ResizeControlContainerProps {
@@ -23,5 +25,24 @@ export interface ResizeControlContainerProps {
 
 export interface ResizeControlViewProps extends ResizeControlContainerProps {
   axis: ResizeAxis;
-  children?: ResizeControlRenderer;
 }
+
+export type ResizeControlRenderer = (axis: ResizeAxis) => React.ReactNode;
+
+interface CellProps extends React.ThHTMLAttributes<HTMLTableHeaderCellElement> {
+  rowIndex?: number;
+  columnIndex?: number;
+
+  resizeAxis?: DragAxis;
+  renderResizeControl?: (axis: 'x' | 'y') => ResizeControlRenderer;
+}
+
+export type TdProps = CellProps;
+export type TdElement = React.ReactElement<TdProps>;
+
+export interface ThProps extends CellProps {
+  reorderAxis?: DragAxis;
+  onReorder?: ReorderCallback;
+}
+
+export type ThElement = React.ReactElement<ThProps>;

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { DraggableCore, DraggableData } from 'react-draggable';
 
-import ResizeControlView from './view';
+import { ResizeControlView } from './view';
 import { ResizeData } from '../../types/resize.types';
-import { ResizeAxis, ResizeControlProps } from '../../types/resize-control.types';
+import { ResizeAxis, ResizeControlProps } from '../../types/cell.types';
 
 const MINIMUM_PX = 2;
 
@@ -26,7 +26,7 @@ function convertToResizeData(axis: ResizeAxis, data: DraggableData): ResizeData 
 }
 
 const ResizeControl: React.FunctionComponent<ResizeControlProps> = (props: ResizeControlProps) => {
-  const { axis = 'x', children, onResize, onReset } = props;
+  const { axis = 'x', onResize, onReset } = props;
   const ref = React.createRef<HTMLDivElement>();
 
   const onStart = useCallback((e) => {
@@ -65,9 +65,7 @@ const ResizeControl: React.FunctionComponent<ResizeControlProps> = (props: Resiz
       onDrag={ onDrag }
       onStop={ onStop }
     >
-      <ResizeControlView ref={ ref } axis={ axis } onDoubleClick={ onReset }>
-        { children }
-      </ResizeControlView>
+      <ResizeControlView ref={ ref } axis={ axis } onDoubleClick={ onReset } />
     </DraggableCore>
   );
 }

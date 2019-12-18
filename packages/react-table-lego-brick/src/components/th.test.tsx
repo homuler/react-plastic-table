@@ -3,10 +3,10 @@ import React from 'react';
 import assert from 'power-assert';
 import { describe } from 'mocha';
 import { Matcher } from '@testing-library/react';
-import { renderInThead, cleanup } from '../../utils/test';
+import { renderInThead, cleanup } from '../utils/test';
 
-import Th from '../th';
-import { ThProps } from '../../types';
+import Th from './th';
+import { ThProps } from '../types';
 
 describe('Th', () => {
   function validateProps(thElement: HTMLTableHeaderCellElement, props: ThProps): void {

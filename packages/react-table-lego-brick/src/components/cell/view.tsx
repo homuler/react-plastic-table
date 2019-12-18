@@ -1,7 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-import { ResizeControlRenderer, ResizeControlContainerProps, ResizeControlViewProps } from '../../types';
+import { DraggableViewProps, ResizeControlContainerProps, ResizeControlViewProps } from '../../types';
+
+export const DraggingContent = styled.span`
+  position: absolute;
+  z-index: 2;
+`;
+
+const cellStyle = (): FlattenSimpleInterpolation => css`
+  position: relative;
+
+  &.dragging::after {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: 1;
+    background-color: white;
+    opacity: 0.7;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+`;
+
+export const TdView = styled.td`
+  ${cellStyle}
+`;
+
+export const ThView = styled.th.attrs<DraggableViewProps>((props) => ({ className: props.isDragging ? 'dragging' : void 0 }))<DraggableViewProps>`
+  ${cellStyle}
+
+  & > ${DraggingContent} {
+    opacity: ${(props): string => props.isDragging ? '1' : '0'};
+  }
+`;
+
 
 const CursorContainer = styled.div<ResizeControlContainerProps>`
   position: absolute;
@@ -55,21 +90,16 @@ const CursorY = styled(Cursor)`
   border-width: 1px 0;
 `;
 
-const defaultRenderer: ResizeControlRenderer = function(axis) {
-  return axis === 'x' ? <CursorX /> : <CursorY />;
-}
-
-const ResizeControlView = React.forwardRef<HTMLDivElement, ResizeControlViewProps>((props: ResizeControlViewProps, ref) => {
-  const { axis = 'x', children = defaultRenderer, ...containerProps } = props;
-  const Container = axis === 'y' ? CursorContainerY : CursorContainerX;
+export const ResizeControlView = React.forwardRef<HTMLDivElement, ResizeControlViewProps>((props: ResizeControlViewProps, ref) => {
+  const { axis = 'x', ...containerProps } = props;
+  const Container = axis === 'x' ? CursorContainerX : CursorContainerY;
+  const Cursor = axis === 'x' ? CursorX : CursorY;
 
   return (
     <Container ref={ ref } { ...containerProps }>
-      { children(axis) }
+      <Cursor />
     </Container>
   )
 });
 
 ResizeControlView.displayName = 'ResizeControlView';
-
-export default ResizeControlView;

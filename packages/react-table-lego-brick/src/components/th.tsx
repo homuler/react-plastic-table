@@ -1,11 +1,11 @@
 import React from 'react';
 import { DraggableCore } from 'react-draggable';
 
-import { ThView, DraggingContent } from './view';
-import ResizeControl from '../resize-control';
-import useResize from './useResize';
-import useReorder from './useReorder';
-import { ThProps } from '../../types';
+import { ThView, DraggingContent } from './cell/view';
+import ResizeControl from './cell/resize-control';
+import useResize from './cell/useResize';
+import useReorder from './cell/useReorder';
+import { ThProps } from '../types';
 
 const Th: React.FunctionComponent<ThProps> = (props: ThProps) => {
   const {
