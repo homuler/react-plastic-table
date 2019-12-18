@@ -3,7 +3,7 @@ import React from 'react';
 import assert from 'power-assert';
 import { describe, Suite } from 'mocha';
 import { RenderResult } from '@testing-library/react';
-import { renderInThead } from '../../utils/test';
+import { renderInThead, cleanup } from '../../utils/test';
 
 import RowGroup from '.';
 import Tr from '../tr';
@@ -39,12 +39,7 @@ describe('RowGroup', () => {
     });
   }
 
-  afterEach(() => {
-    Array.prototype.forEach.call(
-      document.body.children,
-      (child) => { document.body.removeChild(child); },
-    );
-  });
+  afterEach(() => { cleanup(); });
 
   context('when the children has a single row but no cells', () => {
     const rowGroup = (

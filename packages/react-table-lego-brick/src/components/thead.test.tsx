@@ -3,7 +3,7 @@ import React from 'react';
 import assert from 'power-assert';
 import { describe } from 'mocha';
 import { RenderResult } from '@testing-library/react';
-import { renderInTable } from '../utils/test';
+import { renderInTable, cleanup } from '../utils/test';
 
 import Thead from './thead';
 import Tr from './tr';
@@ -35,12 +35,7 @@ describe('Thead', () => {
     });
   }
 
-  afterEach(() => {
-    Array.prototype.forEach.call(
-      document.body.children,
-      (child) => { document.body.removeChild(child); },
-    );
-  });
+  afterEach(() => { cleanup(); });
 
   it('renders header cells with their rowIndex and columnIndex', () => {
     const renderResult = renderInTable(

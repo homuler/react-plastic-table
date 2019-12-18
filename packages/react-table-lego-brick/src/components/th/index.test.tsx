@@ -3,7 +3,7 @@ import React from 'react';
 import assert from 'power-assert';
 import { describe } from 'mocha';
 import { Matcher } from '@testing-library/react';
-import { renderInThead } from '../../utils/test';
+import { renderInThead, cleanup } from '../../utils/test';
 
 import Th from '../th';
 import { ThProps } from '../../types';
@@ -37,12 +37,7 @@ describe('Th', () => {
     return element.tagName.toLowerCase() === 'div' && element.children.length > 0;
   };
 
-  afterEach(() => {
-    Array.prototype.forEach.call(
-      document.body.children,
-      (child) => { document.body.removeChild(child); },
-    );
-  });
+  afterEach(() => { cleanup(); });
 
   context('when resizeAxis is not specified', () => {
     const props: ThProps = { colSpan: 2, rowSpan: 3 };
