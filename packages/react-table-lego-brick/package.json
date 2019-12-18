@@ -8,7 +8,7 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.js && tsc --emitDeclarationOnly",
+    "build": "tsc",
     "coverage": "nyc mocha 'src/**/*.test.{ts,tsx}' --opts ./mocha.opts",
     "coverage:ci": "nyc mocha 'src/**/*.test.{ts,tsx}' --opts ./mocha.opts --reporter mocha-junit-reporter --reporter-options mochaFile=../../reports/react-table-lego-brick/test-results.xml",
     "coverage:ci:report": "nyc report --reporter=text-lcov > ../../coverage/react-table-lego-brick/lcov.info",
