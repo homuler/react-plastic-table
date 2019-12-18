@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ThElement } from './th.types';
-import { TdElement } from './td.types';
+import { TdElement, ThElement } from './cell.types';
 import { ReorderCallback } from './reorder.types';
 
 type TableCellElement = ThElement | TdElement;
