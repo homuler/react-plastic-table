@@ -60,3 +60,9 @@ export function mountInTbody(ui: React.ReactElement, option = {}): ReactWrapper 
   return mountWithContainer(<table><tbody>{ ui }</tbody></table>, option);
 }
 
+export function cleanup(): void {
+  Array.prototype.forEach.call(
+    document.body.children,
+    (child) => { document.body.removeChild(child); },
+  );
+}
