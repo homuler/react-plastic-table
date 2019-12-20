@@ -3,7 +3,11 @@
   "compilerOptions": {
     "jsx": "react",
     "outDir": "./lib",
+    "rootDir": "src",
     "types": ["react"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../react-table-lego-brick" }
+  ]
 }

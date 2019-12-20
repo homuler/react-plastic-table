@@ -4,7 +4,9 @@
   "description": "> TODO: description",
   "author": "homuler <junrou.nishida@gmail.com>",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
