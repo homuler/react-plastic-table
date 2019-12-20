@@ -6,7 +6,7 @@ export interface MatrixTableProps {
 
   columns: Array<HeaderObj>;
   rows: Array<HeaderObj>;
-  cols?: Array<ColProps | undefined | null>;
+  colProps?: Array<ColProps | undefined | null>;
   onLayoutChange?: LayoutChangeCallback;
 
   children: (column: HeaderObj, row: HeaderObj) => React.ReactNode;
