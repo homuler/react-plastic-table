@@ -88,6 +88,9 @@ export default class HeaderTree {
 
     this.children[xIndex] = y;
     this.children[yIndex] = x;
+    x.index = yIndex;
+    y.index = xIndex;
+
     this.clearCache();
   }
 
@@ -97,7 +100,6 @@ export default class HeaderTree {
     if (!nextSibling) { return; }
 
     this.parent?.swapChildren(this.index, this.index + 1);
-    this.parent?.clearCache();
   }
 
   moveToPrevious(): void {
@@ -106,7 +108,6 @@ export default class HeaderTree {
     if (!previousSibling) { return; }
 
     this.parent?.swapChildren(this.index, this.index - 1);
-    this.parent?.clearCache();
   }
 
   toHeaderObject(): HeaderObj {

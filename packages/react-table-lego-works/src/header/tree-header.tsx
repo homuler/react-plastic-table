@@ -1,9 +1,6 @@
-import React, { useCallback, useContext, useMemo } from 'react';
-
-import get from 'lodash/get';
+import React, { useCallback, useContext } from 'react';
 
 import { ColGroup, Col, Thead, Tr, Th, TableContext, ReorderCallback, ReorderCursor, SizeMap } from 'react-table-lego-brick';
-import HeaderTree from './data/header-tree';
 import { TreeHeaderProps } from '../types';
 
 function canSwap(source: HTMLElement, target: HTMLElement, { x }: ReorderCursor, direction: 'left' | 'right'): boolean {
@@ -29,27 +26,24 @@ function swapSizeMap(sizeMap: SizeMap, source: HTMLElement, target: HTMLElement)
 }
 
 const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderProps) => {
-  const { headers, onLayoutChange } = props;
+  const { headerTree, onLayoutChange } = props;
   const { widths } = useContext(TableContext);
 
-  const [headerTree, thProps] = useMemo(() => {
-    const tree = HeaderTree.fromHeaders(headers);
-    return [tree, tree.toThPropsByRows()];
-  }, [headers]);
+  const thProps = headerTree.toThPropsByRows();
   const colCount = headerTree.width;
   const onReorder: ReorderCallback = useCallback((_e, cursor, source, target) => {
-    if (!onLayoutChange || !source.id) { return; }
+    if (!source.id) { return; }
 
     const sourceCell = headerTree.find(source.id);
 
     if (!sourceCell) { return; }
 
-    if (get(sourceCell.previousSibling, 'id') === target.id && canSwap(source.node, target.node, cursor, 'left')) {
+    if (sourceCell.previousSibling?.id === target.id && canSwap(source.node, target.node, cursor, 'left')) {
       sourceCell.moveToPrevious();
 
       // it might be better to calculate column index from the HeaderTree object
       swapSizeMap(widths.transaction(), source.node, target.node);
-    } else if (get(sourceCell.nextSibling, 'id') === target.id && canSwap(source.node, target.node, cursor, 'right')) {
+    } else if (sourceCell.nextSibling?.id === target.id && canSwap(source.node, target.node, cursor, 'right')) {
       sourceCell.moveToNext();
 
       // it might be better to calculate column index from the HeaderTree object
@@ -58,7 +52,11 @@ const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderP
       return;
     }
 
-    onLayoutChange(headerTree.toHeaderObject().children, widths);
+    if (onLayoutChange) {
+      onLayoutChange(headerTree.toHeaderObject().children, widths);
+    } else {
+      widths.commit();
+    }
   }, [headerTree, widths, onLayoutChange]);
 
   return (

@@ -1,8 +1,9 @@
 import { ColProps } from 'react-table-lego-brick';
-import { HeaderObj, LayoutChangeCallback } from './commons.types';
+import { LayoutChangeCallback } from './commons.types';
+import HeaderTree from '../../header/data/header-tree';
 
 export interface TreeHeaderProps {
-  headers: Array<HeaderObj>;
+  headerTree: HeaderTree;
   columns: Array<ColProps | undefined | null>;
   onLayoutChange?: LayoutChangeCallback;
 }

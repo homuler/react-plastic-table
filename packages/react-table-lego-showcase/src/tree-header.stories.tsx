@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { Table, Tbody, Tr, Td, ColProps } from 'react-table-lego-brick';
-import { TreeHeader, HeaderObj, LayoutChangeCallback } from 'react-table-lego-works';
+import { TreeHeader, HeaderObj, HeaderTree } from 'react-table-lego-works';
 
 interface Props {
   columns: Array<ColProps | null>;
@@ -11,15 +11,11 @@ interface Props {
 }
 
 const TreeHeaderTable: React.FunctionComponent<Props> = (props: Props) => {
-  const [headers, setHeaders] = useState<Array<HeaderObj>>(props.headers);
-  const onLayoutChange: LayoutChangeCallback = (nextHeaders, widths) => {
-    if (nextHeaders) { setHeaders(nextHeaders); }
-    if (widths) { widths.commit(); }
-  };
+  const headerTree = HeaderTree.fromHeaders(props.headers);
 
   return (
     <Table>
-      <TreeHeader columns={ props.columns } headers={ headers } onLayoutChange={ onLayoutChange } />
+      <TreeHeader columns={ props.columns } headerTree={ headerTree } />
 
       <Tbody>
         {
