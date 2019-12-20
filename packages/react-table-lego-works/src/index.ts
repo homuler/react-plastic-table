@@ -1,3 +1,3 @@
-export { default as TreeHeader } from './headers/tree-header';
+export { default as TreeHeader } from './header/tree-header';
 
 export * from './types';
