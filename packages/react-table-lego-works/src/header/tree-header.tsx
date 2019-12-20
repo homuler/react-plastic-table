@@ -15,7 +15,7 @@ const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderP
   return (
     <>
       <ColGroup>
-        { Array.from({ length: colCount }, (_x, i) => (<Col key={ i } { ...(props.columns[i] || {}) } />)) }
+        { Array.from({ length: colCount }, (_x, i) => (<Col key={ i } { ...(props.colProps[i] || {}) } />)) }
       </ColGroup>
 
       <Thead>
@@ -32,5 +32,7 @@ const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderP
     </>
   );
 };
+
+TreeHeader.displayName = 'TreeHeader';
 
 export default TreeHeader;

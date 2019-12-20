@@ -5,7 +5,7 @@ import { Table, Tbody, Tr, Td, ColProps } from 'react-table-lego-brick';
 import { TreeHeader, HeaderObj, HeaderTree } from 'react-table-lego-works';
 
 interface Props {
-  columns: Array<ColProps | null>;
+  colProps: Array<ColProps | null>;
   headers: Array<HeaderObj>;
   data: Array<{ x: string; y: string; z: string }>;
 }
@@ -15,7 +15,7 @@ const TreeHeaderTable: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Table>
-      <TreeHeader columns={ props.columns } headerTree={ headerTree } />
+      <TreeHeader colProps={ props.colProps } headerTree={ headerTree } />
 
       <Tbody>
         {
@@ -36,7 +36,7 @@ const TreeHeaderTable: React.FunctionComponent<Props> = (props: Props) => {
 
 storiesOf('Headers/TreeHeader', module)
   .add('Depth = 1', () => {
-    const columns = [
+    const colProps = [
       { style: { width: 100 } },
       null,
       { style: { width: 200 } },
@@ -48,5 +48,5 @@ storiesOf('Headers/TreeHeader', module)
     ];
     const data = [{ x: 'x', y: 'y', z: 'z' }];
 
-    return (<TreeHeaderTable columns={ columns } headers={ headers } data={ data } />);
+    return (<TreeHeaderTable colProps={ colProps } headers={ headers } data={ data } />);
   });
