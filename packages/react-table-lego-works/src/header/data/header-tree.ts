@@ -158,5 +158,6 @@ export default class HeaderTree {
 
   private clearCache(): void {
     this._thPropsByRows = void 0;
+    this.parent?.clearCache();
   }
 }
