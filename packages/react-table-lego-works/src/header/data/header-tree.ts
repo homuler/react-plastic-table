@@ -14,6 +14,8 @@ export default class HeaderTree {
   private depth: number;
   private children: Array<HeaderTree>;
 
+  private _thPropsByRows?: Array<ThProps[]>;
+
   constructor(header: HeaderObj, isDummy = true, parent: HeaderTree | null = null, index = 0, level = 0) {
     this.id = header.id;
     this.name = header.name;
@@ -86,6 +88,7 @@ export default class HeaderTree {
 
     this.children[xIndex] = y;
     this.children[yIndex] = x;
+    this.clearCache();
   }
 
   moveToNext(): void {
@@ -93,7 +96,8 @@ export default class HeaderTree {
 
     if (!nextSibling) { return; }
 
-    (this.parent as HeaderTree).swapChildren(this.index, this.index + 1);
+    this.parent?.swapChildren(this.index, this.index + 1);
+    this.parent?.clearCache();
   }
 
   moveToPrevious(): void {
@@ -101,7 +105,8 @@ export default class HeaderTree {
 
     if (!previousSibling) { return; }
 
-    (this.parent as HeaderTree).swapChildren(this.index, this.index - 1);
+    this.parent?.swapChildren(this.index, this.index - 1);
+    this.parent?.clearCache();
   }
 
   toHeaderObject(): HeaderObj {
@@ -113,13 +118,15 @@ export default class HeaderTree {
   }
 
   toThPropsByRows(): Array<ThProps[]> {
+    if (this._thPropsByRows) { return this._thPropsByRows; }
+
     const thPropsByRows = this.buildThPropsByRows(Array.from({ length: this.depth }, () => []), this.depth);
 
     if (this.isDummy) {
-      return thPropsByRows.slice(1);
+      return this._thPropsByRows = thPropsByRows.slice(1);
     }
 
-    return thPropsByRows;
+    return this._thPropsByRows = thPropsByRows;
   }
 
   private toThProps(rowSpan = 1): ThProps {
@@ -147,5 +154,9 @@ export default class HeaderTree {
     result[this.level].push(this.toThProps());
 
     return result;
+  }
+
+  private clearCache(): void {
+    this._thPropsByRows = void 0;
   }
 }
