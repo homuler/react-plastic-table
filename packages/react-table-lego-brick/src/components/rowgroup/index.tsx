@@ -39,15 +39,16 @@ function findPosition(grid: Grid, rowIndex: number, start: number, rowSpan: numb
   return [rowIndex, columnIndex];
 }
 
-function buildTrElements(rows: Array<TrElement>, ref: ChildRef<HTMLTableRowElement>): Array<TrElement> {
+function buildTrElements(rows: Array<TrElement>, ref: ChildRef<HTMLTableRowElement>, offset = 0): Array<TrElement> {
   const grid: Grid = [];
 
-  return rows.map((tr, rowIndex) => {
+  return rows.map((tr, i) => {
+    const rowIndex = i + offset;
     let cursor = 0;
 
     const cells = React.Children.toArray(tr.props.children || []).map((cell) => {
       const { rowSpan = 1, colSpan = 1 } = cell.props;
-      const [, columnIndex] = findPosition(grid, rowIndex, cursor, rowSpan, colSpan);
+      const [, columnIndex] = findPosition(grid, i, cursor, rowSpan, colSpan);
 
       cursor = columnIndex + 1;
 
@@ -63,7 +64,7 @@ const RowGroup: React.FunctionComponent<RowGroupProps> = (props: RowGroupProps) 
   const children = flatten(props.children) as Array<TrElement>;
   const ref = useColumnWidthMonitor(children.length);
 
-  return (<>{ buildTrElements(children, ref) }</>);
+  return (<>{ buildTrElements(children, ref, props.offset) }</>);
 };
 
 RowGroup.displayName = 'RowGroup';

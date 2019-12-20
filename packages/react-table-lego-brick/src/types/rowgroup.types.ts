@@ -5,6 +5,7 @@ import { TrElement } from './tr.types';
 type RowElement = TrElement | React.ReactFragment;
 
 export interface RowGroupProps {
+  offset?: number;
   children: RowElement | Array<RowElement>;
 }
 
