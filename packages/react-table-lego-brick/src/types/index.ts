@@ -16,3 +16,5 @@ export * from './reorder.types';
 export * from './resize.types';
 
 export * from './sizeMap.types';
+
+export * from './common.types';

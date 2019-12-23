@@ -4,7 +4,7 @@ import get from 'lodash/get';
 
 import { flatten } from '../../utils/children';
 import useColumnWidthMonitor from './useColumnWidthMonitor';
-import { TrElement, RowGroupProps, CellPosition, ChildRef } from '../../types';
+import { TrElement, ThElement, TdElement, RowGroupProps, CellPosition, ChildRef } from '../../types';
 
 type Grid = boolean[][];
 
@@ -46,7 +46,7 @@ function buildTrElements(rows: Array<TrElement>, ref: ChildRef<HTMLTableRowEleme
     const rowIndex = i + offset;
     let cursor = 0;
 
-    const cells = React.Children.toArray(tr.props.children || []).map((cell) => {
+    const cells = (flatten<ThElement | TdElement>(tr.props.children || [])).map((cell) => {
       const { rowSpan = 1, colSpan = 1 } = cell.props;
       const [, columnIndex] = findPosition(grid, i, cursor, rowSpan, colSpan);
 
@@ -61,7 +61,7 @@ function buildTrElements(rows: Array<TrElement>, ref: ChildRef<HTMLTableRowEleme
 
 
 const RowGroup: React.FunctionComponent<RowGroupProps> = (props: RowGroupProps) => {
-  const children = flatten(props.children) as Array<TrElement>;
+  const children = flatten(props.children);
   const ref = useColumnWidthMonitor(children.length);
 
   return (<>{ buildTrElements(children, ref, props.offset) }</>);
