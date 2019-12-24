@@ -22,7 +22,7 @@ export default function useReorder(args: ReorderArgs): DraggableHookReturnType {
   const { axis, onReorder } = args;
 
   const reorderCell: DraggableEventHandler = useCallback((e, data) => {
-    if (!onReorder) { return; }
+    if (!onReorder || axis === 'none') { return; }
 
     const sourceNode = data.node;
     const { x, y } = normalizeClient(e);

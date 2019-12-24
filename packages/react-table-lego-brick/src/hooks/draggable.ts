@@ -34,6 +34,8 @@ export default function useDraggable(args: DraggableArgs): DraggableHookReturnTy
   const handleStart = useCallback((e, data) => {
     e.stopPropagation();
 
+    if (axis === 'none') { return; }
+
     setIsDragging(true);
 
     if (!ref.current) { return; }
@@ -48,7 +50,7 @@ export default function useDraggable(args: DraggableArgs): DraggableHookReturnTy
   const handleDrag = useCallback((e, data) => {
     e.stopPropagation();
 
-    if (!ref.current) { return; }
+    if (axis === 'none' || !ref.current) { return; }
 
     const cursorPosition = normalizeClient(e);
     const nextPosition = calcRelativePosition(axis, ref.current, cursorPosition);
