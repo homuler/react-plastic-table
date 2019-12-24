@@ -7,3 +7,4 @@ reports/
 storybook-static/
 
 lib/
+tsconfig.tsbuildinfo
