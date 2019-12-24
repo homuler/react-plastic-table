@@ -4,9 +4,12 @@ import { Td, Th } from 'react-table-lego-brick';
 
 import { DiagonalSplitCellContentProps, DiagonalSplitTdProps, DiagonalSplitThProps } from '../types';
 
-const cellStyle = (): FlattenSimpleInterpolation => css`
-  background: linear-gradient(to top right, 49.5%, black 49.5%, black 50.5%, 50.5%);
-  line-height: 1;
+type Props = {
+  backgroundColor: string;
+}
+
+const cellStyle = (props: Props): FlattenSimpleInterpolation => css`
+  background: linear-gradient(to top right, ${props.backgroundColor} 49.5%, black 49.5%, black 50.5%, ${props.backgroundColor} 50.5%);
 `;
 
 const DiagonalSplitTdView = styled(Td)`${cellStyle}`;
@@ -30,9 +33,11 @@ const DiagonalSplitContent: React.FunctionComponent<DiagonalSplitCellContentProp
 };
 
 export const DiagonalSplitTd: React.FunctionComponent<DiagonalSplitTdProps> = (props: DiagonalSplitTdProps) => {
+  const { left, right, backgroundColor = 'transparent', ...cellProps } = props;
+
   return (
-    <DiagonalSplitTdView>
-      <DiagonalSplitContent left={ props.left } right={ props.right } />
+    <DiagonalSplitTdView backgroundColor={ backgroundColor } { ...cellProps }>
+      <DiagonalSplitContent left={ left } right={ right } />
     </DiagonalSplitTdView>
   );
 };
@@ -40,9 +45,11 @@ export const DiagonalSplitTd: React.FunctionComponent<DiagonalSplitTdProps> = (p
 DiagonalSplitTd.displayName = 'DiagonalSplitTd';
 
 export const DiagonalSplitTh: React.FunctionComponent<DiagonalSplitThProps> = (props: DiagonalSplitThProps) => {
+  const { left, right, backgroundColor = 'transparent', ...cellProps } = props;
+
   return (
-    <DiagonalSplitThView>
-      <DiagonalSplitContent left={ props.left } right={ props.right } />
+    <DiagonalSplitThView backgroundColor={ backgroundColor } { ...cellProps }>
+      <DiagonalSplitContent left={ left } right={ right } />
     </DiagonalSplitThView>
   );
 };
