@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-react": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
