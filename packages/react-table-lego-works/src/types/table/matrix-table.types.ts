@@ -8,6 +8,9 @@ interface CellProps {
 export interface MatrixTableProps {
   className?: string;
 
+  columnLabel?: string;
+  rowLabel?: string;
+
   columns: Array<HeaderObj>;
   rows: Array<HeaderObj>;
   colProps?: Array<ColProps | undefined | null>;

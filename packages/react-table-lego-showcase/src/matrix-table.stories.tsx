@@ -30,7 +30,38 @@ storiesOf('Table/MatrixTable', module)
       { style: { width: 200 } },
     ];
     const columns = [
-      { id: '0', name: '' },
+      { id: 't', name: 'T' },
+      { id: 'f', name: 'F' },
+    ];
+    const rows = [
+      { id: 't', name: 'T' },
+      { id: 'f', name: 'F' },
+    ];
+    const getContent = (columnId: string, rowId: string): string => {
+      if (columnId !== rowId) {
+        return 'F';
+      }
+
+      return columnId === 't' ? 'T' : 'F';
+    };
+
+    return (
+      <StatefulMatrixTable colProps={ colProps } columnLabel='X' rowLabel='Y' columns={ columns } rows={ rows }>
+        {
+          (columnId, rowId, props): React.ReactElement => {
+            return <Td { ...props }>{ getContent(columnId, rowId) }</Td>;
+          }
+        }
+      </StatefulMatrixTable>
+    );
+  })
+  .add('Depth = 2', () => {
+    const colProps = [
+      { style: { width: 200 } },
+      { style: { width: 200 } },
+      { style: { width: 200 } },
+    ];
+    const columns = [
       { id: 't', name: 'T' },
       { id: 'f', name: 'F' },
     ];
