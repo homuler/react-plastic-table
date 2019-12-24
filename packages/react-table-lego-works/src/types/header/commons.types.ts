@@ -9,4 +9,11 @@ export interface HeaderObj {
   children?: Array<HeaderObj>;
 }
 
-export type LayoutChangeCallback = (headers?: Array<HeaderObj>, widths?: SizeMap, height?: SizeMap) => void;
+export type TableLayout = {
+  columns?: Array<HeaderObj>;
+  rows?: Array<HeaderObj>;
+  widths?: SizeMap;
+  height?: SizeMap;
+};
+
+export type LayoutChangeCallback = (layout: TableLayout) => void;

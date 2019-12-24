@@ -5,7 +5,7 @@ import HeaderTree from './header-tree';
 import { ThProps } from 'react-table-lego-brick';
 
 describe('HeaderTree', () => {
-  describe('#toThPropsByRows', () => {
+  describe('#toThPropsForColumn', () => {
     function assertThProps(thProps: ThProps, id: string, children: React.ReactNode, colSpan: number, rowSpan: number): void {
       assert.equal(thProps.id, id);
       assert.equal(thProps.children, children);
@@ -18,7 +18,7 @@ describe('HeaderTree', () => {
       const headerTree = HeaderTree.fromHeaders(headers);
 
       it('returns an array which corresponds to 1x1 size header', () => {
-        const thPropsByRows = headerTree.toThPropsByRows();
+        const thPropsByRows = headerTree.toThPropsForColumn();
 
         assert.equal(thPropsByRows.length, 1);
         assert.equal(thPropsByRows[0].length, 1);
@@ -35,7 +35,7 @@ describe('HeaderTree', () => {
       const headerTree = HeaderTree.fromHeaders(headers);
 
       it('returns an array which corresponds to 1x2 size header', () => {
-        const thPropsByRows = headerTree.toThPropsByRows();
+        const thPropsByRows = headerTree.toThPropsForColumn();
 
         assert.equal(thPropsByRows.length, 1);
         assert.equal(thPropsByRows[0].length, 2);
@@ -55,7 +55,7 @@ describe('HeaderTree', () => {
       const headerTree = HeaderTree.fromHeaders(headers);
 
       it('returns an array which corresponds to 2x1 size header', () => {
-        const thPropsByRows = headerTree.toThPropsByRows();
+        const thPropsByRows = headerTree.toThPropsForColumn();
 
         assert.equal(thPropsByRows.length, 2);
         assert.equal(thPropsByRows[0].length, 1);
@@ -89,7 +89,7 @@ describe('HeaderTree', () => {
       const headerTree = HeaderTree.fromHeaders(headers);
 
       it('returns a corresponding array of th props', () => {
-        const thPropsByRows = headerTree.toThPropsByRows();
+        const thPropsByRows = headerTree.toThPropsForColumn();
 
         assert.equal(thPropsByRows.length, 3);
         assert.equal(thPropsByRows[0].length, 3);

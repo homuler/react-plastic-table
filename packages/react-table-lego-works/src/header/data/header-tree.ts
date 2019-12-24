@@ -1,9 +1,12 @@
 import { HeaderObj } from '../../types';
 import { ThProps } from 'react-table-lego-brick';
 
+type Orientation = 'horizontal' | 'vertical';
+
 export default class HeaderTree {
   id: string;
   width: number;
+  depth: number;
 
   private name?: string;
   private format?: (id: string, name?: string) => React.ReactNode;
@@ -11,10 +14,11 @@ export default class HeaderTree {
   private parent: HeaderTree | null;
   private index: number;
   private level: number;
-  private depth: number;
   private children: Array<HeaderTree>;
 
-  private _thPropsByRows?: Array<ThProps[]>;
+  private _thPropsForColumn?: Array<ThProps[]>;
+  private _thPropsForRow?: Array<ThProps[]>;
+  private _leaves?: Array<HeaderTree>;
 
   constructor(header: HeaderObj, isDummy = true, parent: HeaderTree | null = null, index = 0, level = 0) {
     this.id = header.id;
@@ -80,6 +84,16 @@ export default class HeaderTree {
     return this.parent.children[this.index - 1];
   }
 
+  get leaves(): Array<HeaderTree> {
+    if (this._leaves) { return this._leaves; }
+
+    if (this.children.length === 0) {
+      return this._leaves = [this];
+    }
+
+    return this._leaves = Array.prototype.concat.apply([], this.children.map(x => x.leaves));
+  }
+
   swapChildren(xIndex: number, yIndex: number): void {
     const x = this.children[xIndex];
     const y = this.children[yIndex];
@@ -118,47 +132,77 @@ export default class HeaderTree {
     };
   }
 
-  toThPropsByRows(): Array<ThProps[]> {
-    if (this._thPropsByRows) { return this._thPropsByRows; }
+  toThPropsForColumn(): Array<ThProps[]> {
+    if (this._thPropsForColumn) { return this._thPropsForColumn; }
 
-    const thPropsByRows = this.buildThPropsByRows(Array.from({ length: this.depth }, () => []), this.depth);
+    const thPropsByRows = this.buildThPropsForColumn(Array.from({ length: this.depth }, () => []), this.depth);
 
     if (this.isDummy) {
-      return this._thPropsByRows = thPropsByRows.slice(1);
+      return this._thPropsForColumn = thPropsByRows.slice(1);
     }
 
-    return this._thPropsByRows = thPropsByRows;
+    return this._thPropsForColumn = thPropsByRows;
   }
 
-  private toThProps(rowSpan = 1): ThProps {
+  toThPropsForRow(): Array<ThProps[]> {
+    if (this._thPropsForRow) { return this._thPropsForRow; }
+
+    const thPropsForRow = this.buildThPropsForRow(this.depth);
+
+    if (this.isDummy) {
+      thPropsForRow[0].shift();
+      return this._thPropsForRow = thPropsForRow;
+    }
+
+    return this._thPropsForRow = thPropsForRow;
+  }
+
+  private toThProps(orientation: Orientation, span = 1): ThProps {
     return {
       id: `${this.id}`,
       children: this.format ? this.format(this.id, this.name) : this.name,
-      colSpan: this.width,
-      rowSpan: rowSpan,
+      colSpan: orientation === 'horizontal' ? this.width : span,
+      rowSpan: orientation === 'vertical' ? this.width : span,
     };
   }
 
-  private buildThPropsByRows(thProps: Array<ThProps[]>, maxDepth: number): Array<ThProps[]> {
+  private buildThPropsForColumn(thProps: Array<ThProps[]>, maxDepth: number): Array<ThProps[]> {
     let result = thProps;
 
     if (this.children.length === 0) {
-      result[this.level].push(this.toThProps(maxDepth - this.level));
+      result[this.level].push(this.toThProps('horizontal', maxDepth - this.level));
 
       return result;
     }
 
     this.children.forEach((child) => {
-      result = child.buildThPropsByRows(result, maxDepth);
+      result = child.buildThPropsForColumn(result, maxDepth);
     });
 
-    result[this.level].push(this.toThProps());
+    result[this.level].push(this.toThProps('horizontal'));
+
+    return result;
+  }
+
+  private buildThPropsForRow(maxDepth: number): Array<ThProps[]> {
+    if (this.children.length === 0) {
+      return [[this.toThProps('vertical', maxDepth - this.level)]];
+    }
+
+    const result = this.children.reduce((acc: Array<ThProps[]>, child) => {
+      return acc.concat(child.buildThPropsForRow(maxDepth));
+    }, []);
+
+    result[0].unshift(this.toThProps('vertical'));
 
     return result;
   }
 
   private clearCache(): void {
-    this._thPropsByRows = void 0;
+    this._thPropsForColumn = void 0;
+    this._thPropsForRow = void 0;
+    this._leaves = void 0;
+
     this.parent?.clearCache();
   }
 }

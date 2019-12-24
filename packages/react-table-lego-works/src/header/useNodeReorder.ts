@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import HeaderTree from './data/header-tree';
 import { SizeMap, ReorderCallback } from 'react-table-lego-brick';
-import { LayoutChangeCallback } from '../types';
+import { LayoutChangeCallback, TableLayout } from '../types';
 
 type TreeType = 'column' | 'row';
 type Direction = 'previous' | 'next';
@@ -29,6 +29,12 @@ function swapSizeMap(treeType: TreeType, sizeMap: SizeMap, source: HTMLElement, 
   return sizeMap.swap(xIdx, yIdx, xSpan, ySpan);
 }
 
+function buildLayout(treeType: TreeType, headerTree: HeaderTree, sizeMap: SizeMap): TableLayout {
+  const [headerKey, sizeKey] = treeType === 'column' ? ['columns', 'widths'] : ['rows', 'heights'];
+
+  return { [headerKey]: headerTree.toHeaderObject().children, [sizeKey]: sizeMap };
+}
+
 export default function useNodeReorder(treeType: TreeType, headerTree: HeaderTree, sizeMap: SizeMap, onLayoutChange?: LayoutChangeCallback): ReorderCallback {
   return useCallback((_e, cursor, source, target) => {
     if (!source.id) { return; }
@@ -54,7 +60,7 @@ export default function useNodeReorder(treeType: TreeType, headerTree: HeaderTre
     }
 
     if (onLayoutChange) {
-      onLayoutChange(headerTree.toHeaderObject().children, sizeMap);
+      onLayoutChange(buildLayout(treeType, headerTree, sizeMap));
     } else {
       sizeMap.commit();
     }

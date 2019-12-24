@@ -1,5 +1,9 @@
-import { ColProps } from 'react-table-lego-brick';
+import { ColProps, TdElement } from 'react-table-lego-brick';
 import { HeaderObj, LayoutChangeCallback } from '../header/commons.types';
+
+interface CellProps {
+  key: string;
+}
 
 export interface MatrixTableProps {
   className?: string;
@@ -7,7 +11,7 @@ export interface MatrixTableProps {
   columns: Array<HeaderObj>;
   rows: Array<HeaderObj>;
   colProps?: Array<ColProps | undefined | null>;
-  onLayoutChange?: LayoutChangeCallback;
+  onLayoutChange: LayoutChangeCallback;
 
-  children: (column: HeaderObj, row: HeaderObj) => React.ReactNode;
+  children: (columnId: string, rowId: string, props: CellProps) => TdElement;
 }

@@ -8,7 +8,7 @@ const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderP
   const { headerTree, onLayoutChange } = props;
   const { widths } = useContext(TableContext);
 
-  const thProps = headerTree.toThPropsByRows();
+  const thProps = headerTree.toThPropsForColumn();
   const colCount = headerTree.width;
   const onReorder = useNodeReorder('column', headerTree, widths, onLayoutChange);
 
