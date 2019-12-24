@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./lib",
+    "rootDir": "src",
+    "types": ["react"]
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../react-table-lego-brick" }
+  ]
+}

@@ -1,4 +1,8 @@
-export function isPositive(props: object, propName: string, componentName: string): Error | null {
+
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+type Props = { [key: string]: any };
+
+export function isPositive(props: Props, propName: string, componentName: string): Error | null {
   const value = props[propName];
 
   if (typeof value !== 'number') {
@@ -12,7 +16,7 @@ export function isPositive(props: object, propName: string, componentName: strin
   return null;
 }
 
-export function isNullOrPositive(props: object, propName: string, componentName: string): Error | null {
+export function isNullOrPositive(props: Props, propName: string, componentName: string): Error | null {
   const value = props[propName];
 
   if (value === null || value === void 0) { return null; }
