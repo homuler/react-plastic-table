@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
+    "react-table-lego-accessory": "^0.1.1",
     "react-table-lego-brick": "^0.1.1"
   },
   "peerDependencies": {
