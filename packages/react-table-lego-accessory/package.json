@@ -8,13 +8,15 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "prebuild": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "devDependencies": {
     "@types/react": "^16.9.9",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^16.10.2",

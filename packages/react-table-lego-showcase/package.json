@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "start-storybook",
+    "prebuild": "rimraf -rf storybook-static/",
     "build": "build-storybook -c .storybook"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "core-js": "^3.3.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0",
     "typescript": "^3.7.3"
   },
   "dependencies": {

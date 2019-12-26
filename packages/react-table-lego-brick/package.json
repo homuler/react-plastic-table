@@ -8,7 +8,8 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "prebuild": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
+    "build": "tsc -b",
     "coverage": "nyc mocha 'src/**/*.test.{ts,tsx}' --opts ./mocha.opts",
     "coverage:ci": "nyc mocha 'src/**/*.test.{ts,tsx}' --opts ./mocha.opts --reporter mocha-junit-reporter --reporter-options mochaFile=../../reports/react-table-lego-brick/test-results.xml",
     "coverage:ci:report": "nyc report --reporter=text-lcov > ../../coverage/react-table-lego-brick/lcov.info",
@@ -41,6 +42,7 @@
     "power-assert": "^1.6.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0",
     "rollup": "^1.27.9",
     "rollup-plugin-commonjs": "^10.1.0",
     "sinon": "^7.5.0",

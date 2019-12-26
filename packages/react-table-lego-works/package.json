@@ -8,7 +8,8 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "prebuild": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "power-assert": "^1.6.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0",
     "typescript": "^3.7.3"
   }
 }
