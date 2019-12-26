@@ -6,7 +6,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
-    "deploy:storybook": "lerna run build --scope react-table-lego-showcase -- -o ../../storybook-static",
+    "deploy:storybook": "lerna run build --stream && mv packages/react-table-lego-showcase/storybook-static .",
     "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:ci": "yarn lint --format junit --output-file=./reports/eslint/eslint.xml",
     "test:ci": "lerna run coverage:ci",
