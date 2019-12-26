@@ -1,5 +1,5 @@
 import { DraggableEvent } from 'react-draggable';
-import { DragAxis } from './draggable.types';
+import { DragAxis } from './draggable';
 
 export interface ReorderingHeader {
   id?: string | null;

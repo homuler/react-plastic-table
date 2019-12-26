@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ThElement, TdElement } from './cell.types';
-import { ReorderCallback } from './reorder.types';
-import { ValueOrArray } from './common.types';
+import { ThElement, TdElement } from './cell';
+import { ReorderCallback } from './reorder';
+import { ValueOrArray } from './common';
 
 export interface TrProps extends React.HTMLAttributes<HTMLTableRowElement> {
   ref?: (node: HTMLTableRowElement) => void;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TrElement } from './tr.types';
+import { TrElement } from './tr';
 
 type RowElement = TrElement | React.ReactFragment;
 

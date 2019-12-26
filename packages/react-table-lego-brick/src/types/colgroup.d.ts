@@ -1,4 +1,4 @@
-import { ColElement } from './col.types';
+import { ColElement } from './col';
 
 export interface ColGroupProps {
   offset?: number;

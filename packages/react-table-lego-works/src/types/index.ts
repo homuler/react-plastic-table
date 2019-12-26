@@ -1,4 +1,4 @@
-export * from './header/commons.types';
-export * from './header/tree-header.types';
+export * from './header/commons';
+export * from './header/tree-header';
 
-export * from './table/matrix-table.types';
+export * from './table/matrix-table';

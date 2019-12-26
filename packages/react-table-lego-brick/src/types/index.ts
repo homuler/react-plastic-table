@@ -1,20 +1,20 @@
-export * from './caption.types';
-export * from './cell.types';
-export * from './col.types';
-export * from './colgroup.types';
-export * from './rowgroup.types';
-export * from './table.types';
-export * from './thead.types';
-export * from './tbody.types';
-export * from './tfoot.types';
-export * from './tr.types';
+export * from './caption';
+export * from './cell';
+export * from './col';
+export * from './colgroup';
+export * from './rowgroup';
+export * from './table';
+export * from './thead';
+export * from './tbody';
+export * from './tfoot';
+export * from './tr';
 
-export * from './childrenRef.types';
-export * from './defaultSize.types';
-export * from './draggable.types';
-export * from './reorder.types';
-export * from './resize.types';
+export * from './childrenRef';
+export * from './defaultSize';
+export * from './draggable';
+export * from './reorder';
+export * from './resize';
 
-export * from './sizeMap.types';
+export * from './sizeMap';
 
-export * from './common.types';
+export * from './common';

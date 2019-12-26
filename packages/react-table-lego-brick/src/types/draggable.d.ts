@@ -24,4 +24,4 @@ export type DraggableHookReturnType = {
 
 export interface DraggableViewProps {
   isDragging: boolean;
-};
+}

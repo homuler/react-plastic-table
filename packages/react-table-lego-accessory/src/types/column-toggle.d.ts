@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Checkbox } from './checkbox.types';
+import { Checkbox } from './checkbox';
 
 export namespace ColumnToggle {
   export type Column = {

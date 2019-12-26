@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { DraggableCore, DraggableData } from 'react-draggable';
 
 import { ResizeControlView } from './view';
-import { ResizeData } from '../../types/resize.types';
-import { ResizeAxis, ResizeControlProps } from '../../types/cell.types';
+import { ResizeData } from '../../types/resize';
+import { ResizeAxis, ResizeControlProps } from '../../types/cell';
 
 const MINIMUM_PX = 2;
 

@@ -1,5 +1,5 @@
 import { ColProps, TdElement } from 'react-table-lego-brick';
-import { HeaderObj, LayoutChangeCallback } from '../header/commons.types';
+import { HeaderObj, LayoutChangeCallback } from '../header/commons';
 
 interface CellProps {
   key: string;

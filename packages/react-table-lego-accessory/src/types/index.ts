@@ -1,3 +1,3 @@
-export * from './checkbox.types';
-export * from './column-toggle.types';
-export * from './diagonal-split-cell.types';
+export * from './checkbox';
+export * from './column-toggle';
+export * from './diagonal-split-cell';

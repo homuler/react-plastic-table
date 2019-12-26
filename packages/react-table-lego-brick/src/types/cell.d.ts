@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { DragAxis } from './draggable.types';
-import { ReorderCallback } from './reorder.types';
-import { ResizeCallback, ResetSizeCallback } from './resize.types';
+import { DragAxis } from './draggable';
+import { ReorderCallback } from './reorder';
+import { ResizeCallback, ResetSizeCallback } from './resize';
 
 export type ResizeAxis = 'x' | 'y';
 
