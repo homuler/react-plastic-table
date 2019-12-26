@@ -8,8 +8,8 @@ interface TableCommons {
 }
 
 const defaultTableContext: TableCommons = {
-  widths: new SizeMap(new Map<number, number>(), () => {}),
-  heights: new SizeMap(new Map<number, number>(), () => {}),
+  widths: new SizeMap(new Map<number, number>(), () => { /** dummy */ }),
+  heights: new SizeMap(new Map<number, number>(), () => { /** dummy */ }),
 };
 const TableContext = createContext(defaultTableContext);
 
