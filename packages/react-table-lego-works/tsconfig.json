@@ -4,7 +4,8 @@
     "jsx": "react",
     "outDir": "./lib",
     "rootDir": "src",
-    "types": ["react"]
+    "types": ["react"],
+    "composite": true
   },
   "include": ["src/**/*"],
   "references": [
