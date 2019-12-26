@@ -32,7 +32,18 @@ const MatrixTable: React.FunctionComponent<MatrixTableProps> = (props: MatrixTab
           thPropsForColumn.map((propsInRow, i) => {
             return (
               <Tr key={ i }>
-                { i === 0 && <DiagonalSplitTh reorderAxis='none' resizeAxis='none' left={ rowLabel } right={ columnLabel } rowSpan={ columnTree.depth - 1 } colSpan={ rowTree.depth - 1 } /> }
+                {
+                  i === 0 && (
+                    <DiagonalSplitTh className='left-top-cell'
+                      resizeAxis='none'
+                      reorderAxis='none'
+                      left={ rowLabel }
+                      right={ columnLabel }
+                      colSpan={ rowTree.depth - 1 }
+                      rowSpan={ columnTree.depth - 1 }
+                    />
+                  )
+                }
                 { propsInRow.map((cell) => (<Th key={ cell.id } { ...cell } reorderAxis='x' onReorder={ onColumnReorder } />)) }
               </Tr>
             )

@@ -11,5 +11,6 @@ export { default as Thead } from './components/thead';
 export { default as Tr } from './components/tr';
 
 export { default as TableContext } from './contexts/tableContext';
+export { default as SizeMap } from './utils/sizeMap';
 
 export * from './types';

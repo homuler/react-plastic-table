@@ -2,8 +2,9 @@ import React, { useContext, useMemo } from 'react';
 
 import get from 'lodash/get';
 
-import { ColGroupProps, ColElement, SizeMap } from '../types';
+import { ColGroupProps, ColElement } from '../types';
 import TableContext from '../contexts/tableContext';
+import SizeMap from '../utils/sizeMap';
 import { normalizeWidth } from '../utils/style';
 
 /**

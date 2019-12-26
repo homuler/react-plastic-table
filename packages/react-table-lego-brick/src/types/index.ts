@@ -15,6 +15,4 @@ export * from './draggable';
 export * from './reorder';
 export * from './resize';
 
-export * from './sizeMap';
-
 export * from './common';
