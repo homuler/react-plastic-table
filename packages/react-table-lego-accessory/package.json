@@ -25,6 +25,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
+    "react-table-lego-brick": "^0.1.1",
     "styled-components": "^4.4.1"
   }
 }

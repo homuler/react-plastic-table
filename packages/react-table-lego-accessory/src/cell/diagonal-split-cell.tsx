@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Td, Th } from 'react-table-lego-brick';
 
-import { DiagonalSplitCellContentProps, DiagonalSplitTdProps, DiagonalSplitThProps } from '../types';
+import { DiagonalSplitCell } from '../types';
 
 type Props = {
   backgroundColor: string;
@@ -23,7 +23,7 @@ const DiagonalSplitLeft = styled.div`
   text-align: left;
 `;
 
-const DiagonalSplitContent: React.FunctionComponent<DiagonalSplitCellContentProps> = (props: DiagonalSplitCellContentProps) => {
+const DiagonalSplitContent: React.FunctionComponent<DiagonalSplitCell.ContentProps> = (props: DiagonalSplitCell.ContentProps) => {
   return (
     <>
       <DiagonalSplitRight>{ props.right }</DiagonalSplitRight>
@@ -32,7 +32,7 @@ const DiagonalSplitContent: React.FunctionComponent<DiagonalSplitCellContentProp
   );
 };
 
-export const DiagonalSplitTd: React.FunctionComponent<DiagonalSplitTdProps> = (props: DiagonalSplitTdProps) => {
+export const DiagonalSplitTd: React.FunctionComponent<DiagonalSplitCell.TdProps> = (props: DiagonalSplitCell.TdProps) => {
   const { left, right, backgroundColor = 'transparent', ...cellProps } = props;
 
   return (
@@ -44,7 +44,7 @@ export const DiagonalSplitTd: React.FunctionComponent<DiagonalSplitTdProps> = (p
 
 DiagonalSplitTd.displayName = 'DiagonalSplitTd';
 
-export const DiagonalSplitTh: React.FunctionComponent<DiagonalSplitThProps> = (props: DiagonalSplitThProps) => {
+export const DiagonalSplitTh: React.FunctionComponent<DiagonalSplitCell.ThProps> = (props: DiagonalSplitCell.ThProps) => {
   const { left, right, backgroundColor = 'transparent', ...cellProps } = props;
 
   return (
