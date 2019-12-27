@@ -6,7 +6,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
-    "deploy:storybook": "lerna run build --stream && mv packages/react-table-lego-showcase/storybook-static .",
+    "build:ci": "lerna run build:ci --stream",
+    "deploy:storybook": "yarn run build:ci",
     "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "lint:ci": "yarn lint --format junit --output-file=./reports/eslint/eslint.xml",
     "test:ci": "lerna run coverage:ci",
@@ -15,7 +16,7 @@
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",
     "versionup:major": "lerna version major --conventional-commits",
-    "prepublishOnly": "lerna run build --stream --ignore react-table-lego-showcase",
+    "prepublishOnly": "yarn run build:ci --ignore react-table-lego-showcase",
     "release": "lerna publish from-package"
   },
   "devDependencies": {

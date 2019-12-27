@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "start-storybook",
-    "prebuild": "rimraf -rf storybook-static/",
-    "build": "build-storybook -c .storybook"
+    "build": "build-storybook -c .storybook",
+    "build:ci": "yarn run build -o ../../storybook-static"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

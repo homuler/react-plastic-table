@@ -4,12 +4,13 @@
   "description": "react-table-lego accessories",
   "author": "homuler <junrou.nishida@gmail.com>",
   "license": "MIT",
-  "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prebuild": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b",
+    "prebuild:ci": "yarn run clean",
+    "build:ci": "tsc -b --force",
+    "clean": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "devDependencies": {
