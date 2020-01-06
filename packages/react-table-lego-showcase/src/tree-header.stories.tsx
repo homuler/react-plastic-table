@@ -1,52 +1,59 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Table, Tbody, Tr, Td, ColProps } from 'react-table-lego-brick';
-import { TreeHeader, HeaderObj, HeaderTree } from 'react-table-lego-works';
+import { Tr, Td, ColProps, TdElement } from 'react-table-lego-brick';
+import { TreeHeaderTable, HeaderObj, HeaderTree } from 'react-table-lego-works';
 
-interface Props {
+interface Props<T> {
   colProps: Array<ColProps | null>;
-  headers: Array<HeaderObj>;
-  data: Array<{ x: string; y: string; z: string }>;
+  columns: Array<HeaderObj>;
+  data: Array<T>;
+  children: (row: T, column: HeaderTree, index: number) => TdElement;
 }
 
-const TreeHeaderTable: React.FunctionComponent<Props> = (props: Props) => {
-  const headerTree = HeaderTree.fromHeaders(props.headers);
+function StatefulTreeHeaderTable<T>(props: Props<T>): React.ReactElement {
+  const [columns, setColumns] = useState<Array<HeaderObj>>(props.columns);
+  const onLayoutChange = useCallback((layout) => {
+    if (layout.columns) { setColumns(layout.columns); }
+
+    layout.widths?.commit();
+    layout.heights?.commit();
+  }, []);
 
   return (
-    <Table>
-      <TreeHeader colProps={ props.colProps } headerTree={ headerTree } />
+    <TreeHeaderTable { ...props } columns={ columns } onLayoutChange={ onLayoutChange }>
+      {
+        (row, headerTree, i): TdElement => {
+          const headers = headerTree.leaves;
 
-      <Tbody>
-        {
-          props.data.map((item, i) => {
-            return (
-              <Tr key={ i }>
-                <Td>{ item.x }</Td>
-                <Td>{ item.y }</Td>
-                <Td>{ item.z }</Td>
-              </Tr>
-            );
-          })
+          return (<Tr>{ headers.map((header) => props.children(row, header, i))}</Tr>);
         }
-      </Tbody>
-    </Table>
+      }
+    </TreeHeaderTable>
   );
 };
 
-storiesOf('Headers/TreeHeader', module)
+storiesOf('Table/TreeHeaderTable', module)
   .add('Depth = 1', () => {
     const colProps = [
       { style: { width: 100 } },
       null,
       { style: { width: 200 } },
     ];
-    const headers = [
-      { id: '1', name: 'X' },
-      { id: '2', name: 'Y' },
-      { id: '3', name: 'Z' },
+    const columns = [
+      { id: 'x', name: 'X' },
+      { id: 'y', name: 'Y' },
+      { id: 'z', name: 'Z' },
     ];
-    const data = [{ x: 'x', y: 'y', z: 'z' }];
+    const data: { [key: string]: string }[] = [
+      { x: 'x1', y: 'y1', z: 'z1' },
+      { x: 'x2', y: 'y2', z: 'z2' },
+      { x: 'x3', y: 'y3', z: 'z3' },
+    ];
 
-    return (<TreeHeaderTable colProps={ colProps } headers={ headers } data={ data } />);
+    return (
+      <StatefulTreeHeaderTable colProps={ colProps } columns={ columns } data={ data }>
+        { (row, header): TdElement => (<Td key={ header.id }>{ row[header.id] }</Td>)}
+      </StatefulTreeHeaderTable>
+    );
   });
