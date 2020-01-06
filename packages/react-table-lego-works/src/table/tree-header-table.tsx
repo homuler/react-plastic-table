@@ -13,7 +13,7 @@ function TreeHeaderTable<T>(props: TreeHeaderTableProps<T>): React.ReactElement 
 
   const columnTree = useMemo(() => (HeaderTree.fromHeaders(columns)), [columns]);
 
-  let offset = 0;
+  let offset = columnTree.depth;
 
   return (
     <Table className={ className } style={ style }>
