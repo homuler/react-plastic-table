@@ -18,6 +18,10 @@ function buildReorderingHeader(node: HTMLElement): ReorderingHeader {
   };
 }
 
+function isOutOfRange(min: number, max: number, value: number): boolean {
+  return value < min || value > max;
+}
+
 export default function useReorder(args: ReorderArgs): DraggableHookReturnType {
   const { axis, onReorder } = args;
 
@@ -25,14 +29,14 @@ export default function useReorder(args: ReorderArgs): DraggableHookReturnType {
     if (!onReorder || axis === 'none') { return; }
 
     const sourceNode = data.node;
-    const { x, y } = normalizeClient(e);
-    const { height, width } = data.node.getBoundingClientRect();
+    const { x: cursorX, y: cursorY } = normalizeClient(e);
+    const { x, y, height, width } = data.node.getBoundingClientRect();
 
-    if (x === null || y === null) { return; }
+    if (cursorX === null || cursorY === null) { return; }
 
     // calculate virtual cursor position.
-    const virtualX = x - (axis === 'x' || axis === 'both' ? 0 : data.x - (width / 2));
-    const virtualY = y - (axis === 'y' || axis === 'both' ? 0 : data.y - (height / 2));
+    const virtualX = axis === 'x' || axis === 'both' || !isOutOfRange(x, x + width, cursorX) ? cursorX : x + width / 2;
+    const virtualY = axis === 'y' || axis === 'both' || !isOutOfRange(y, y + height, cursorY) ? cursorY : y + height / 2;
 
     // Table header cell at the cursor position.
     const targetNode = Array.prototype.find.call(
@@ -49,7 +53,7 @@ export default function useReorder(args: ReorderArgs): DraggableHookReturnType {
     const source = buildReorderingHeader(sourceNode);
     const target = buildReorderingHeader(targetNode);
 
-    onReorder(e, { x, y }, source, target);
+    onReorder(e, { x: cursorX, y: cursorY }, source, target);
   }, [axis, onReorder]);
   const props = useDraggable({ axis, onDrag: reorderCell });
 
