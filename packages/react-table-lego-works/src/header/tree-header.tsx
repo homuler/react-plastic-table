@@ -5,7 +5,7 @@ import useNodeReorder from './useNodeReorder';
 import { TreeHeaderProps } from '../types';
 
 const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderProps) => {
-  const { headerTree, onLayoutChange } = props;
+  const { headerTree, colProps = [], onLayoutChange } = props;
   const { widths } = useContext(TableContext);
 
   const thProps = headerTree.toThPropsForColumn();
@@ -15,7 +15,7 @@ const TreeHeader: React.FunctionComponent<TreeHeaderProps> = (props: TreeHeaderP
   return (
     <>
       <ColGroup>
-        { Array.from({ length: colCount }, (_x, i) => (<Col key={ i } { ...(props.colProps[i] || {}) } />)) }
+        { Array.from({ length: colCount }, (_x, i) => (<Col key={ i } { ...(colProps[i] || {}) } />)) }
       </ColGroup>
 
       <Thead>

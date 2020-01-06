@@ -12,5 +12,6 @@ export { default as Tr } from './components/tr';
 
 export { default as TableContext } from './contexts/tableContext';
 export { default as SizeMap } from './utils/sizeMap';
+export { flatten as flattenNode } from './utils/children';
 
 export * from './types';
