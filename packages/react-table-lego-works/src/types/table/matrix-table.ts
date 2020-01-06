@@ -7,6 +7,7 @@ interface CellProps {
 
 export interface MatrixTableProps {
   className?: string;
+  style?: React.CSSProperties;
 
   columnLabel?: string;
   rowLabel?: string;

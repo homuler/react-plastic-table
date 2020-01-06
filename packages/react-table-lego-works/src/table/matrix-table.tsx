@@ -8,7 +8,7 @@ import useNodeReorder from '../header/useNodeReorder';
 
 const MatrixTable: React.FunctionComponent<MatrixTableProps> = (props: MatrixTableProps) => {
   const {
-    className, columnLabel, rowLabel,
+    className, style, columnLabel, rowLabel,
     columns, rows, colProps = [], onLayoutChange,
   } = props;
   const { widths, heights } = useContext(TableContext);
@@ -22,7 +22,7 @@ const MatrixTable: React.FunctionComponent<MatrixTableProps> = (props: MatrixTab
   const onRowReorder = useNodeReorder('row', rowTree, heights, onLayoutChange);
 
   return (
-    <Table className={ className }>
+    <Table className={ className } style={ style }>
       <ColGroup>
         { Array.from({ length: colCount }, (_x, i) => (<Col key={ i } { ...(colProps[i] || {}) } />)) }
       </ColGroup>
