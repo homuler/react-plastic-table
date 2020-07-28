@@ -1,0 +1,37 @@
+{
+  "name": "react-plastic-table-works",
+  "version": "0.1.1",
+  "description": "> TODO: description",
+  "author": "homuler <junrou.nishida@gmail.com>",
+  "license": "MIT",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "prebuild:ci": "yarn run clean",
+    "build:ci": "tsc -b --force",
+    "clean": "rimraf -rf lib/ && rimraf tsconfig.tsbuildinfo",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "react-plastic-table-accessory": "^0.1.1",
+    "react-plastic-table-brick": "^0.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/mocha": "^5.2.7",
+    "@types/power-assert": "^1.5.2",
+    "@types/react": "^16.9.17",
+    "mocha": "^6.2.2",
+    "power-assert": "^1.6.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.4"
+  }
+}

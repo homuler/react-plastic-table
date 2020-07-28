@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./lib"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../react-plastic-table-accessory" },
+    { "path": "../react-plastic-table-brick" },
+    { "path": "../react-plastic-table-works" }
+  ]
+}

@@ -16,7 +16,7 @@
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",
     "versionup:major": "lerna version major --conventional-commits",
-    "prepublishOnly": "yarn run build:ci --ignore react-table-lego-showcase",
+    "prepublishOnly": "yarn run build:ci --ignore react-plastic-table-showcase",
     "release": "lerna publish from-package"
   },
   "devDependencies": {

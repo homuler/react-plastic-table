@@ -10,15 +10,15 @@ coverage:
   round: nearest
   precision: 2
 flags:
-  react-table-lego-accessory:
+  react-plastic-table-accessory:
     paths:
-      - packages/react-table-lego-accessory
-  react-table-lego-brick:  
+      - packages/react-plastic-table-accessory
+  react-plastic-table-brick:
     paths:
-      - packages/react-table-lego-brick
-  react-table-lego-works:
+      - packages/react-plastic-table-brick
+  react-plastic-table-works:
     paths:
-      - packages/react-table-lego-works
+      - packages/react-plastic-table-works
 parsers:
   javascript:
     enable_partials: yes
